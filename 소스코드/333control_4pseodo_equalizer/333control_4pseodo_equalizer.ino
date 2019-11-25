@@ -24,20 +24,11 @@ void LEDSetting(int layer, unsigned int state){   // 확인해보고 고치자
     }
   delay(1);
   for(int i=0;i<9;i++){     
-    digitalWrite(room[i], LOW);   // 모든 칸 닫힘      
+    digitalWrite(room[i], HIGH);   // 모든 칸 닫힘      
     }
   digitalWrite(layer, LOW); //층 닫힘    
 }
-/*
-void LEDSetting(int layer, unsigned int state){   // 좀 더 짧은 이 코드는 동작할까?
-  digitalWrite(layer, HIGH); //층 개방
-  for(int i=0;i<9;i++){    
-    digitalWrite(room[i],not(bitRead(state, i))); // 패턴 코드에 따라 칸 개방     
-    delay(1);
-    }
-  digitalWrite(layer, LOW); //층 닫힘    
-}
-*/
+
 void setup()
 {  
   for(int i=0;i<m_layer;i++){
