@@ -17,7 +17,7 @@ unsigned int numberPattern[10] = {  // 숫자 패턴 (각 index가 그 층에서
   0B0000000111111111,
   };
 
-void LEDSetting(int layer, unsigned int state){   // 확인해보고 고치자
+void LEDSetting(int layer, unsigned int state){
   digitalWrite(layer, HIGH); //층 개방
   for(int i=0;i<9;i++){    
     digitalWrite(room[i],not(bitRead(state, i))); // 패턴 코드에 따라 칸 개방     

@@ -60,7 +60,7 @@ unsigned int layerPattern1[16] ={ //0층 패턴
   0B0000000000010000 
 };
 
-void LEDSetting(int layer, unsigned int state){   // 확인해보고 고치자
+void LEDSetting(int layer, unsigned int state){
   digitalWrite(layer, HIGH); //층 개방
   for(int i=0;i<9;i++){    
     digitalWrite(room[i],not(bitRead(state, i))); // 패턴 코드에 따라 칸 개방     

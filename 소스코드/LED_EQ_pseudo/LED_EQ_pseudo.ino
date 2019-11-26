@@ -1,3 +1,5 @@
+// Program Design: Kidan Jin, EEE, SKKU
+
 int frequency[7] = {A0,A1,A2,A3,A4,A5,A6};
 int amplitude[8] = {9,8,7,6,5,4,3,2};
 int freqnum = 7;      // 가로 진동수 개수
@@ -15,28 +17,19 @@ unsigned int numberPattern[9] = {  // 해당 freq에서 킬 led 개수(index) �
   0B0000000001111111,
   0B0000000011111111,
   };
-///////////////////////// 여기부터 ///////////////////////////
-void LEDSetting(int frequency, unsigned int state){   // 확인해보고 고치자
-  digitalWrite(frequency, HIGH); //층 개방
+
+void LEDSetting(int layer, unsigned int state){
+  digitalWrite(layer, HIGH); //층 개방
   for(int i=0;i<9;i++){    
-    digitalWrite(amplitude[i],not(bitRead(state, i))); // 패턴 코드에 따라 칸 개방     
+    digitalWrite(room[i],not(bitRead(state, i))); // 패턴 코드에 따라 칸 개방     
     }
   delay(1);
   for(int i=0;i<9;i++){     
-    digitalWrite(amplitude[i], LOW);   // 모든 칸 닫힘      
+    digitalWrite(room[i], HIGH);   // 모든 칸 닫힘      
     }
-  digitalWrite(frequency, LOW); //층 닫힘    
+  digitalWrite(layer, LOW); //층 닫힘    
 }
-/*
-void LEDSetting(int frequency, unsigned int state){   // 좀 더 짧은 이 코드는 동작할까?
-  digitalWrite(frequency, HIGH); //층 개방
-  for(int i=0;i<9;i++){    
-    digitalWrite(amplitude[i],not(bitRead(state, i))); // 패턴 코드에 따라 칸 개방     
-    delay(1);
-    }
-  digitalWrite(frequency, LOW); //층 닫힘    
-}
-*/
+
 void setup()
 {  
   for(int i=0;i<freqnum;i++){
