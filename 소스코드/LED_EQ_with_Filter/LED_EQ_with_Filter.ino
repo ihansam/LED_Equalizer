@@ -11,7 +11,7 @@ int frequency[7] = {A1,A2,A3,A4,A5,A6,A7};
 int amplitude[8] = {9,8,7,6,5,4,3,2};
 int freqnum = 7;                    // 가로 진동수 개수
 int ampnum = 8;                     // 세로 세기 개수
-int delaytime = 100;                // 패턴 유지 시간
+int delaytime = 25;                // 패턴 유지 시간
 unsigned int numberPattern[9] = {   // 해당 freq에서 킬 led 개수(index) 패턴
   0B0000000000000000,
   0B0000000000000001,
@@ -34,7 +34,7 @@ void setup()
   
   for(int i=0;i<freqnum;i++){
     pinMode(frequency[i], OUTPUT);      // freq level 선언
-    digitalWrite(frequency[i], LOW);    // 각 level 비활성화
+    digitalWrite(frequency[i], HIGH);    // 각 level 비활성화
   }  
   for(int i=0;i<ampnum;i++){
     pinMode(amplitude[i], OUTPUT);      // 칸 선언
@@ -59,7 +59,7 @@ void loop()
   // main
   for(int j=0;j<delaytime;j++){     // delaytime 시간만큼 해당 패턴을 유지
     for(int f=0; f<freqnum; f++){   // 각 level마다 ledOnNum개의 led를 on하도록 setting
-      int levelAmp = spectrum[f]/10 - 1;
+      int levelAmp = spectrum[f]/10 - 2;
       int ledOnNum;
       if (levelAmp<0) ledOnNum = 0;
       else if (levelAmp>ampnum) ledOnNum = ampnum;
@@ -74,7 +74,6 @@ void loop()
   }
   Serial.println();
 
-  delay(322);                              // entire loop delay
 
 }
 
@@ -99,13 +98,13 @@ void readMSGEQ7()
 }
 
 void LEDSetting(int level, unsigned int state){       // 한 freq level에 특정 개수 led on
-  digitalWrite(level, HIGH); //해당 열 open
+  digitalWrite(level, LOW); //해당 열 open
   for(int i=0;i<ampnum;i++){    
-    digitalWrite(amplitude[i],not(bitRead(state, i))); // led on     
+    digitalWrite(amplitude[i],(bitRead(state, i)));   // led on     
     }
   delay(1);
   for(int i=0;i<ampnum;i++){     
-    digitalWrite(amplitude[i], HIGH);                  // led off
+    digitalWrite(amplitude[i], LOW);                  // led off
     }
-  digitalWrite(level, LOW); //해당 열 close   
+  digitalWrite(level, HIGH); //해당 열 close   
 }

@@ -1,6 +1,6 @@
 // Program Design: Kidan Jin, EEE, SKKU
 
-int frequency[7] = {A0,A1,A2,A3,A4,A5,A6};
+int frequency[7] = {A1,A2,A3,A4,A5,A6,A7};
 int amplitude[8] = {9,8,7,6,5,4,3,2};
 int freqnum = 7;      // 가로 진동수 개수
 int ampnum = 8;       // 세로 세기 개수
@@ -19,22 +19,22 @@ unsigned int numberPattern[9] = {  // 해당 freq에서 킬 led 개수(index) �
   };
 
 void LEDSetting(int level, unsigned int state){       // 한 freq level에 특정 개수 led on
-  digitalWrite(level, HIGH); //해당 열 open
+  digitalWrite(level, LOW); //해당 열 open
   for(int i=0;i<ampnum;i++){    
-    digitalWrite(amplitude[i],not(bitRead(state, i))); // led on     
+    digitalWrite(amplitude[i],(bitRead(state, i)));   // led on     
     }
   delay(1);
   for(int i=0;i<ampnum;i++){     
-    digitalWrite(amplitude[i], HIGH);                  // led off
+    digitalWrite(amplitude[i], LOW);                  // led off
     }
-  digitalWrite(level, LOW); //해당 열 close   
+  digitalWrite(level, HIGH); //해당 열 close   
 }
 
 void setup()
 {  
   for(int i=0;i<freqnum;i++){
     pinMode(frequency[i], OUTPUT);      // 층 선언
-    digitalWrite(frequency[i], LOW);    // 각 층 비활성화
+    digitalWrite(frequency[i], HIGH);    // 각 층 비활성화
   }  
   for(int i=0;i<ampnum;i++){
     pinMode(amplitude[i], OUTPUT);       // 칸 선언
