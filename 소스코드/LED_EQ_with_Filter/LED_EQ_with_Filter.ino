@@ -8,7 +8,7 @@ int readchannel  = A0;                   // Analog pin 0 = spectrum data from ch
 int spectrum[7];                         // amplitudes of spectrum
 
 int frequency[7] = {A1,A2,A3,A4,A5,A6,A7};
-int amplitude[8] = {9,8,7,6,5,4,3,2};
+int amplitude[8] = {2,3,4,5,6,7,8,9};
 int freqnum = 7;                    // 가로 진동수 개수
 int ampnum = 8;                     // 세로 세기 개수
 int delaytime = 25;                // 패턴 유지 시간
