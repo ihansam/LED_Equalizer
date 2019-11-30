@@ -62,8 +62,6 @@ void readMSGEQ7()
     spectrumRight[i] = analogRead(channelRight) / 4; // Divide 0-1023 by 4 to give 0-255
 
     digitalWrite(ctrlStrobe,HIGH);
-    delayMicroseconds(4 0);                           // Delay to meet minimum strobe-to-strobe time
+    delayMicroseconds(40);                           // Delay to meet minimum strobe-to-strobe time
   }
 }
-
-

@@ -18,16 +18,16 @@ unsigned int numberPattern[9] = {  // 해당 freq에서 킬 led 개수(index) �
   0B0000000011111111,
   };
 
-void LEDSetting(int layer, unsigned int state){
-  digitalWrite(layer, HIGH); //층 개방
-  for(int i=0;i<9;i++){    
-    digitalWrite(room[i],not(bitRead(state, i))); // 패턴 코드에 따라 칸 개방     
+void LEDSetting(int level, unsigned int state){       // 한 freq level에 특정 개수 led on
+  digitalWrite(level, HIGH); //해당 열 open
+  for(int i=0;i<ampnum;i++){    
+    digitalWrite(amplitude[i],not(bitRead(state, i))); // led on     
     }
   delay(1);
-  for(int i=0;i<9;i++){     
-    digitalWrite(room[i], HIGH);   // 모든 칸 닫힘      
+  for(int i=0;i<ampnum;i++){     
+    digitalWrite(amplitude[i], HIGH);                  // led off
     }
-  digitalWrite(layer, LOW); //층 닫힘    
+  digitalWrite(level, LOW); //해당 열 close   
 }
 
 void setup()
