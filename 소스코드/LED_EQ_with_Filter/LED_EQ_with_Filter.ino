@@ -11,7 +11,7 @@ int frequency[7] = {A1,A2,A3,A4,A5,A6,A7};
 int amplitude[8] = {2,3,4,5,6,7,8,9};
 int freqnum = 7;                    // 가로 진동수 개수
 int ampnum = 8;                     // 세로 세기 개수
-int delaytime = 25;                // 패턴 유지 시간
+int delaytime = 25;                 // 패턴 유지 시간
 unsigned int numberPattern[9] = {   // 해당 freq에서 킬 led 개수(index) 패턴
   0B0000000000000000,
   0B0000000000000001,
@@ -33,11 +33,11 @@ void setup()
   digitalWrite(ctrlStrobe,HIGH);         // Drive the strobe signal high
   
   for(int i=0;i<freqnum;i++){
-    pinMode(frequency[i], OUTPUT);      // freq level 선언
+    pinMode(frequency[i], OUTPUT);       // freq level 선언
     digitalWrite(frequency[i], HIGH);    // 각 level 비활성화
   }  
   for(int i=0;i<ampnum;i++){
-    pinMode(amplitude[i], OUTPUT);      // 칸 선언
+    pinMode(amplitude[i], OUTPUT);       // 칸 선언
   }
 }
 
